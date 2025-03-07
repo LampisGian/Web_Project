@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login - Syntaxis</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="./style.css" rel="stylesheet">
+</head>
+
+<body class="flex items-center justify-center min-h-screen relative">
+    <!-- Background Video -->
+    <video autoplay muted loop class="absolute inset-0 w-full h-full object-cover z-0">
+        <source src="./icons/syntax.mp4" type="video/mp4">
+    </video>
+    <!-- Semi-transparent Overlay -->
+    <div class="absolute inset-0 bg-black opacity-50"></div>
+
+    <!-- Login Form Container -->
+    <div class="relative z-10 flex flex-col items-center w-full max-w-2xl mx-auto text-white text-center">
+        <h2 class="text-4xl font-bold underline underline-custom mt-8">Syntax your</h2>
+        <h1 class="text-5xl font-extrabold underline underline-custom mt-2">theςiς</h1>
+
+        <div class="flex flex-wrap justify-center gap-6 mt-12">
+            <div class="flex flex-col items-center">
+                <img src="icons/thesis.png" class="user-type-btn flip-left w-16 h-16 mb-2">
+                <span class="text-lg font-semibold">Secretariat & Tutor</span>
+            </div>
+            <div class="flex flex-col items-center">
+                <img src="icons/students.png"  class="user-type-btn flip-right w-16 h-16 mb-2">
+                <span class="text-lg font-semibold">Students</span>
+            </div>
+        </div>
+
+        <div class="flex-1 flex flex-col justify-center px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24" id="login_form">
+            <div class="flip-card w-full max-w-md mx-auto rounded-lg shadow-lg transform transition-all duration-500 hover:shadow-2xl p-10">
+                <div class="flex justify-center mb-6">
+                    <img src="icons/logo.png" alt="Syntaxis Logo" class="w-24 h-24 rounded-md">
+                </div>            
+                <form id="login">
+                    <div class="mb-6">
+                        <label class="block text-yellow-800 text-sm font-semibold mb-2" for="email">
+                            Email
+                        </label>
+                        <input class="shadow-md border border-yellow-900 rounded-lg w-full py-2 px-4 text-yellow-800 placeholder-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-700 focus:border-transparent transition duration-300" 
+                               type="text" 
+                               required 
+                               id="email" 
+                               placeholder="Enter your email">
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label class="block text-yellow-800 text-sm font-semibold mb-2" for="password">
+                            Password
+                        </label>
+                        <input class="shadow-md border border-yellow-900 rounded-lg w-full py-2 px-4 text-yellow-800 placeholder-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-700 focus:border-transparent transition duration-300" 
+                               type="password" 
+                               required 
+                               id="password" 
+                               placeholder="••••••••••">
+                    </div>
+    
+                    <div class="flex justify-center">
+                        <button class="bg-yellow-700 hover:bg-yellow-800 text-white font-bold py-2 px-6 rounded-lg shadow-lg transform transition-all duration-300 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-yellow-600" 
+                                type="button" 
+                                id="login_btn" 
+                                onclick="login()">
+                            Login
+                        </button>
+                    </div>
+
+                    <div id="fadingSuccessNotification" class="hidden fixed inset-0 flex items-center justify-center z-50">
+                        <div class="bg-green-500 text-white p-4 rounded-lg shadow-lg flex items-center space-x-3 transition-opacity duration-500 ease-out">
+                            <i class="fa-solid fa-square-check fa-beat fa-2xl" style="color: #FFD43B;"></i>
+                        <p class="text-lg font-bold">Login Successful! Redirecting...</p>
+                        </div>
+                    </div>
+                    
+
+                    <div id="errorNotification" class="hidden fixed top-5 right-5 bg-yellow-600 text-white font-bold py-2 px-4 rounded shadow-lg z-50">
+                        <i class="fa-solid fa-circle-exclamation fa-shake fa-2xl" style="color: #FFD43B;"></i>
+                    </div>
+  
+                </form>
+            </div>
+        </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./js/login.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>
+
+

@@ -1,0 +1,115 @@
+[
+  {
+      "password": "sec_pass2",
+      "user_id": 9,
+      "role": "secretariat",
+      "name": "Eleni",
+      "surname": "Papadopoulou",
+      "email": "secretary1@ceid.upatras.gr",
+      "phone": "2610223344",
+      "address": "Patra, Ellada"
+  },
+  {
+      "password": "sec_pass3",
+      "user_id": 10,
+      "role": "secretariat",
+      "name": "Nikos",
+      "surname": "Konstantinou",
+      "email": "secretary2@ceid.upatras.gr",
+      "phone": "2610556677",
+      "address": "Patra, Ellada"
+  },
+  {
+      "password": "sec_pass3",
+      "user_id": 11,
+      "role": "secretariat",
+      "name": "Andreas",
+      "surname": "Mavropoulos",
+      "email": "secretary3@ceid.upatras.gr",
+      "phone": "2610998844",
+      "address": "Patra, Ellada"
+  },
+  {
+      "password": "stud_pass1",
+      "user_id": 12,
+      "role": "student",
+      "name": "Alexandros",
+      "surname": "Georgiou",
+      "email": "alex.georgiou@ceid.upatras.gr",
+      "phone": "6981122233",
+      "address": "Athina, Ellada"
+  },
+  {
+      "password": "stud_pass2",
+      "user_id": 13,
+      "role": "student",
+      "name": "Georgia",
+      "surname": "Poluzou",
+      "email": "geop@ceid.upatras.gr",
+      "phone": "6984455667",
+      "address": "Patra, Ellada"
+  },
+  {
+      "password": "stud_pass3",
+      "user_id": 14,
+      "role": "student",
+      "name": "Konstantinos",
+      "surname": "Stamatiou",
+      "email": "konstantinos.stam@ceid.upatras.gr",
+      "phone": "6987788990",
+      "address": "Thessaloniki, Ellada"
+  },
+  {
+      "password": "stud_pass4",
+      "user_id": 15,
+      "role": "student",
+      "name": "Eirini",
+      "surname": "Karagianni",
+      "email": "eirini.karagianni@ceid.upatras.gr",
+      "phone": "6971234567",
+      "address": "Patra, Ellada"
+  },
+  {
+      "password": "stud_pass5",
+      "user_id": 16,
+      "role": "student",
+      "name": "Giorgos",
+      "surname": "Papakostas",
+      "email": "george.papakostas@ceid.upatras.gr",
+      "phone": "6955544332",
+      "address": "Patra, Ellada"
+  },
+  {
+    "password": "tutor_pass1",
+    "user_id": 17,
+    "role": "tutor",
+    "name": "Ioannis",
+    "surname": "Kostopoulos",
+    "email": "ioannis.kostopoulos@ceid.upatras.gr",
+    "phone": "2610997788",
+    "address": "Patra, Ellada",
+    "mobile": "6931234567" 
+  },
+  {
+    "password": "tutor_pass2",
+    "user_id": 18,
+    "role": "tutor",
+    "name": "Maria",
+    "surname": "Xenou",
+    "email": "maria.xenou@ceid.upatras.gr",
+    "phone": "6949876543",
+    "address": "Patra, Ellada",
+    "mobile": "6933234567" 
+  },
+  {
+    "password": "tutor_pass3",
+    "user_id": 19,
+    "role": "tutor",
+    "name": "Nikolaos",
+    "surname": "Lykos",
+    "email": "nikos.lykos@ceid.upatras.gr",
+    "phone": "6923456789",
+    "address": "Patra, Ellada",
+    "mobile": "69532134567" 
+  }
+]

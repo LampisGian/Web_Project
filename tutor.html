@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Tutor Dashboard - Syntaxis</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="./style.css" rel="stylesheet">
+</head>
+
+<body class="min-h-screen bg-gradient-to-r from-gray-300 via-gray-100 to-white text-gray-800">
+    <nav class="w-full bg-yellow-800 bg-opacity-90 text-white rounded-md flex items-center p-2">
+        <div class="flex items-center">
+            <img src="icons/logo.png" alt="Syntaxis Logo" class="w-12 h-12 rounded-full border-4 border-white shadow-lg">
+            <span class="ml-2 text-xl font-bold">Syntaxis</span>
+        </div>
+        <div class="flex flex-row ml-auto space-x-4">
+            <div class="relative" id="dashboardMenu">
+                <a href="tutor.html" class="text-lg flex items-center gap-2 font-semibold py-2 px-4 rounded transform transition-transform duration-300 hover:scale-105">
+                    <img src="icons/dashboard.png" class="w-6 h-6 rounded-md"> Dashboard
+                </a>
+                <!-- Dropdown Menu -->
+                <div id="dashboardDropdown" class="absolute hidden bg-yellow-800 text-white mt-1 rounded shadow-lg top-full left-0 z-10">
+                    <a href="settings_tutor.html" class="flex items-center gap-2 px-4 py-2 hover:bg-yellow-700">
+                        <img src="icons/info.png" class="w-5 h-5"> Settings
+                    </a>
+                </div>
+            </div>
+            <div class="relative" id="thesesMenu">
+                <button class="text-lg flex items-center gap-2 font-semibold py-2 px-4 rounded transform transition-transform duration-300 hover:scale-105">
+                    <img src="icons/thesis.png" class="w-6 h-6 rounded-md"> Theses
+                </button>
+                <div id="thesesDropdown" class="absolute hidden bg-yellow-800 text-white mt-1 rounded shadow-lg top-full left-0 z-10">
+                    <a href="theses.html" class="flex items-center gap-2 px-4 py-2 hover:bg-yellow-700">
+                        <img src="icons/thesis.png" class="w-5 h-5"> New Thesis
+                    </a>
+                    <a href="stats.html" class="flex items-center gap-2 px-4 py-2 hover:bg-yellow-700">
+                        <img src="icons/stats.png" class="w-5 h-5"> Stats
+                    </a>
+                </div>
+            </div>
+            <div class="relative" id="studentsMenu">
+                <button class="text-lg flex items-center gap-2 font-semibold py-2 px-4 rounded transform transition-transform duration-300 hover:scale-105">
+                    <img src="icons/students.png" class="w-6 h-6 rounded-md"> Students
+                </button>
+                <div id="studentsDropdown" class="absolute hidden bg-yellow-800 text-white mt-1 rounded shadow-lg top-full left-0 z-10">
+                    <a href="students_supervising.html" class="flex items-center gap-2 px-4 py-2 hover:bg-yellow-700">
+                        <img src="icons/students.png" class="w-5 h-5"> Supervising Students
+                    </a>
+                    <a href="invitations.html" class="flex items-center gap-2 px-4 py-2 hover:bg-yellow-700">
+                        <img src="icons/invitation.png" class="w-5 h-5"> Invitations
+                    </a>
+                </div>
+            </div>
+            <a href="./php/logout.php" class="text-lg flex items-center gap-2 font-semibold py-2 px-4 rounded hover:bg-yellow-700">
+                <img src="icons/logout.png" class="w-6 h-6 rounded-md">Logout
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-4">
+        <!-- Header Section -->
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold text-yellow-700">Welcome to the Tutor Dashboard</h1>
+        </header>
+        
+        <!-- Dashboard Cards -->
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <div class="bg-white p-6 rounded-lg shadow-lg transform transition duration-300 hover:shadow-2xl">
+                <h2 class="text-xl font-bold text-yellow-700 mb-4">Theses In Progress</h2>
+                <p id="inProgressCount" class="text-3xl font-bold text-gray-800">0</p>
+                <p class="text-gray-600 mt-2">Theses currently being worked on</p>
+            </div>
+
+            <!-- Theses Under Assignment -->
+            <div class="bg-white p-6 rounded-lg shadow-lg transform transition duration-300 hover:shadow-2xl">
+                <h2 class="text-xl font-bold text-yellow-700 mb-4">Theses Under Assignment</h2>
+                <p id="underAssignmentCount" class="text-3xl font-bold text-gray-800">0</p>
+                <p class="text-gray-600 mt-2">Theses waiting to be assigned</p>
+            </div>
+
+            <!-- Completed Theses -->
+            <div class="bg-white p-6 rounded-lg shadow-lg transform transition duration-300 hover:shadow-2xl">
+                <h2 class="text-xl font-bold text-yellow-700 mb-4">Completed Theses</h2>
+                <p id="completedCount" class="text-3xl font-bold text-gray-800">0</p>
+                <p class="text-gray-600 mt-2">Theses completed successfully</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-lg col-span-1 transform transition duration-300 hover:shadow-2xl">
+               <!-- Thesis Selection Cards -->
+               <label class="block text-gray-700 font-semibold">Select Thesis to add notes or cancel it</label>
+                <div id="thesisCardsContainer" class="grid grid-cols-1 gap-1 max-h-48 overflow-y-auto">
+                    <!-- Cards will be dynamically populated here -->
+                </div>
+
+                <!-- Container for the View Notes Button -->
+                <div id="notesContainer" class="mt-4 mb-2"></div>
+
+                <!-- Notes Section -->
+                <textarea id="noteTextArea" class="w-full p-3 border border-gray-300 rounded-md mb-4" placeholder="Enter your notes (max 300 characters)"></textarea>
+                <button onclick="saveNote()" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg mb-4">Save Note</button>
+
+    
+                <!-- Cancel Thesis Assignment Section -->
+                <div class="mt-2">
+                    <h3 class="text-lg font-bold text-red-600 mb-4">Cancel Thesis Assignment</h3>
+                    <button onclick="cancelThesis()" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-lg">
+                        Cancel Thesis
+                    </button>
+                </div>
+
+    
+                <!-- Change Status Section -->
+                <div class="mt-6">
+                    <h3 class="text-lg font-bold text-yellow-500 mb-4">Change Status to "Under Review"</h3>
+                    <button onclick="changeToUnderReview()" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-6 rounded-lg">Update Status</button>
+                </div>
+            </div>
+          
+            
+            <!-- Courses Offered Card -->
+            <div class="bg-white p-6 rounded-lg shadow-lg transform transition duration-300 hover:shadow-2xl">
+                <h2 class="text-xl font-bold text-yellow-700 mb-5">Created Theses</h2>
+                <section class="w-full">
+                    
+                    <!-- Scrollable Thesis List -->
+                    <ul id="thesesList" class="space-y-4 overflow-y-auto">
+                        <!-- Thesis items will be dynamically populated here -->
+                    </ul>
+                </section>
+
+                <!-- Modal Card for Editing Thesis -->
+                <div id="thesisModal" class="hidden fixed inset-0 flex items-start justify-end transition-transform transform translate-x-full duration-300 pl-8">
+                    <div class="bg-white rounded-lg shadow-lg p-6 w-full h-full lg:h-full overflow-y-auto">
+                        <button onclick="closeModal()" class="float-right text-gray-500 hover:text-yellow-500 transform transition-transform duration-200 hover:scale-150">
+                            <i class="fa-regular fa-rectangle-xmark"></i>
+                        </button>
+                        <h2 class="text-xl font-bold text-yellow-700 mb-4">Edit Thesis</h2>
+                        
+                        
+                        <label class="block text-gray-700 font-semibold mb-2">Title</label>
+                        <input type="text" id="modalTitle" class="w-full p-2 border border-yellow-300 rounded-md mb-4" />
+
+                        <label class="block text-gray-700 font-semibold mb-2">Abstract</label>
+                        <textarea id="modalAbstract" class="w-full p-2 border border-yellow-300 rounded-md mb-4"></textarea>
+
+                        <label class="block text-gray-700 font-semibold mb-2">Student</label>
+                        <input type="text" id="modalStudent" class="w-full p-2 border border-yellow-300 rounded-md mb-4" readonly />
+
+                        <label class="block text-gray-700 font-semibold mb-2">Supervisor</label>
+                        <input type="text" id="modalSupervisor" class="w-full p-2 border border-yellow-300 rounded-md mb-4" readonly />
+
+                        <label class="block text-gray-700 font-semibold mb-2">Co-Supervisor</label>
+                        <input type="text" id="modalCoSupervisor1" class="w-full p-2 border border-yellow-300 rounded-md mb-4" readonly />
+
+                        <label class="block text-gray-700 font-semibold mb-2">Co-Supervisor 2</label>
+                        <input type="text" id="modalCoSupervisor2" class="w-full p-2 border border-yellow-300 rounded-md mb-4" readonly />
+
+                        <label class="block text-gray-700 font-semibold mb-2">Update Date</label> <!-- this is where the supervisor sees updates (accept/reject/invitation sent) regarding last invited instructor -->
+                        <input type="text" id="modalAcceptance" class="w-full p-2 border border-yellow-300 rounded-md mb-4" readonly />
+
+                        <label class="block text-gray-700 font-semibold mb-2">Assigned At</label>
+                        <input type="text" id="modalAssigned" class="w-full p-2 border border-yellow-300 rounded-md mb-4"  readonly/>
+
+                        <div class="flex justify-end space-x-4">
+                            <button onclick="saveThesisChanges()" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded-lg">Save</button>
+                            <button onclick="closeModal()" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-6 rounded-lg">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Assign Student Modal -->
+                <div id="assignModal" class="hidden fixed inset-0 flex items-center justify-center">
+                    <div class="bg-white rounded-lg shadow-lg p-6 w-80 max-w-md">
+                        <h3 class="text-2xl font-bold text-yellow-700 mb-4">Assign Student</h3>
+
+                        <label class="block text-gray-700 font-semibold mb-2">Search by AM</label>
+                        <input type="text" id="searchAM" class="w-full p-2 border border-yellow-300 rounded-md mb-4" placeholder="Enter Student AM" />
+
+                        <button onclick="searchStudent()" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-6 rounded-lg">Search</button>
+
+                        <div id="studentInfo" class="mt-6 hidden">
+                            <p id="studentName" class="text-gray-800 font-semibold"></p>
+                            <p id="studentDepartment" class="text-gray-600"></p>
+                            <button onclick="confirmAssignment()" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 mt-4 rounded-lg">Confirm</button>
+                        </div>
+
+                        <button onclick="closeAssignModal()" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-6 rounded-lg mt-4">Cancel</button>
+                    </div>
+                </div>
+
+                <div id="changePdfModal" class="hidden fixed inset-0 bg-yellow-700 bg-opacity-40 flex items-center justify-center">
+                    <div class="bg-white p-6 rounded-lg shadow-lg w-3/4 max-w-lg">
+                        <h2 class="text-xl font-bold text-gray-800 mb-4">Change PDF</h2>
+                        <input type="file" id="newPdfFile" accept=".pdf" class="mb-4">
+                        <div class="flex justify-end space-x-4">
+                            <button id="cancelChangePdf" class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded">Cancel</button>
+                            <button id="saveNewPdf" class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded">Upload</button>
+                        </div>
+                    </div>
+                </div>                
+               
+             </div>
+        </section>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./js/tutor.js"></script>
+    <script src="./js/navbar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>

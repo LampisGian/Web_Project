@@ -1,0 +1,320 @@
+ /* Custom styles for the dashboard */
+ .nav-item.active {
+    background-color: #ffd700;
+    color: #000;
+}
+
+.sidebar-collapsed {
+    width: 16rem;
+}
+
+.dark-mode {
+    background-color: #1a1a2e;
+    color: #eaeaea;
+}
+
+.settings-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.settings-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+
+#thesisModal.open {
+    transform: translateX(0);
+}
+
+#assignModal {
+    position: absolute;
+    left:20%;
+}
+
+.horizontal-timeline {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    border-top: 2px solid #F59E0B; /* Horizontal line */
+}
+
+.horizontal-timeline li {
+    position: relative;
+    flex: 1;
+    text-align: center;
+}
+
+.horizontal-timeline li:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: -50%;
+    width: 100%;
+    height: 2px;
+    background-color: #F59E0B; /* Horizontal line between items */
+    z-index: -1;
+}
+
+.horizontal-timeline li::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+    background-color: #F59E0B; /* Yellow dot */
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px #FFF; /* White border around the dot */
+}
+
+.horizontal-timeline li .time {
+    font-size: 0.875rem;
+    color: #9CA3AF; /* Gray color for timestamp */
+    margin-bottom: 5px;
+}
+
+.horizontal-timeline li p {
+    margin: 0;
+    font-size: 1rem;
+    color: #374151; 
+}
+
+.horizontal-timeline li .status-current {
+    font-size: 1.1rem;
+    color: #F59E0B;
+    margin-top: 10px;
+}
+
+.horizontal-timeline li .highlight-status {
+    background-color: #FEF3C7; 
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    margin-top: 5px;
+}
+
+td[title] {
+    position: relative;
+}
+
+td[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    background-color: #F59E0B;
+    color: white;
+    padding: 5px;
+    border-radius: 4px;
+    white-space: nowrap;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+#statusFilter, #roleFilter, #activeThesisDropdown {
+    background-image: linear-gradient(to right, #F59E0B, #e5e7eb);
+}
+
+#statusFilter:hover, #roleFilter:hover {
+    background-image: linear-gradient(to left, #F59E0B, #d1d5db);
+}
+
+
+#thesisModal .modal-content {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+#exportButtons {
+    position: absolute;
+    left: 90%;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.tooltip .tooltip-text {
+    visibility: hidden;
+    width: 250px;
+    background-color: #F59E0B;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 8px;
+    position: absolute;
+    z-index: 10;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+.bg-cover {
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+.icon-container img {
+    transition: transform 0.3s ease-in-out;
+}
+
+.icon-container:hover img {
+    transform: scale(1.1);
+}
+
+.underline-custom {
+    text-decoration-color: #F59E0B; /* Yellow-orange color */
+}
+
+.user-type-btn {
+    transition: transform 0.3s ease;
+}
+
+.user-type-btn:hover {
+    transform: translateY(-10px);
+    cursor: pointer;
+}
+
+#login_form {
+    perspective: 1000px;
+  }
+
+.flip-card {
+    position: relative;
+    width: 100%;
+    transition: transform 0.6s ease-in-out;
+    transform-style: preserve-3d;
+    opacity: 0;
+    transform: rotateY(-90deg); /* Initially hidden */
+}
+
+.flip-card.flipped-left {
+transform: rotateY(0deg); /* Flip left */
+opacity: 1;
+}
+
+.flip-card.flipped-right {
+transform: rotateY(0deg); /* Flip right */
+opacity: 1;
+}
+
+/* Front and back faces of the card */
+.flip-card-front,
+.flip-card-back {
+position: absolute;
+width: 100%;
+backface-visibility: hidden;
+}
+
+.flip-card-back {
+transform: rotateY(180deg);
+}
+
+#thesesList {
+    max-height: 560px;
+    overflow-y: auto;
+}
+
+
+#cTheses {
+    background-image: linear-gradient(to right, #f5420b, #e5e7eb);
+}
+
+#cTheses:hover {
+    background-image: linear-gradient(to left, #f5420b, #d1d5db);
+}
+
+#files {
+    min-height: 400px;
+}
+
+/* Style the calendar container */
+.flatpickr-calendar {
+    background-color: #fff; /* White background */
+    border: 1px solid #f5420b;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+}
+
+
+.flatpickr-weekdays {
+    background-color: #f5420b;
+}
+
+.flatpickr-day {
+    border-radius: 20%; /* Make them circular */
+    padding: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.flatpickr-day:hover, .flatpickr-day:focus {
+    background-color: #ffd43b; /* Yellow background */
+    color: #fff; /* White text */
+    transform: scale(1.1); /* Slightly enlarge */
+}
+
+/* Style the selected day */
+.flatpickr-day.selected {
+    background-color: #1d4ed8; /* Blue background for selected date */
+    color: #f5420b; /* White text */
+    font-weight: bold;
+}
+
+/* Style the time picker */
+.flatpickr-time input {
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.tooltip3 {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip3 .tooltip3-text {
+    visibility: hidden;
+    width: max-content;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 17%; 
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip3:hover .tooltip3-text {
+    visibility: visible;
+    opacity: 1;
+}

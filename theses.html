@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Create and View Theses</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome CDN for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="./style.css" rel="stylesheet">
+</head>
+
+<body class="min-h-screen bg-gray-100 text-gray-800">
+
+    <nav class="w-full bg-yellow-800 bg-opacity-90 text-white rounded-md flex items-center p-2">
+        <div class="flex items-center">
+            <img src="icons/logo.png" alt="Syntaxis Logo" class="w-12 h-12 rounded-full border-4 border-white shadow-lg">
+            <span class="ml-2 text-xl font-bold">Syntaxis</span>
+        </div>
+        <div class="flex flex-row ml-auto space-x-4">
+            <div class="relative" id="dashboardMenu">
+                <a href="tutor.html" class="text-lg flex items-center gap-2 font-semibold py-2 px-4 rounded transform transition-transform duration-300 hover:scale-105">
+                    <img src="icons/dashboard.png" class="w-6 h-6 rounded-md"> Dashboard
+                </a>
+                <!-- Dropdown Menu -->
+                <div id="dashboardDropdown" class="absolute hidden bg-yellow-800 text-white mt-1 rounded shadow-lg top-full left-0 z-10">
+                    <a href="settings_tutor.html" class="flex items-center gap-2 px-4 py-2 hover:bg-yellow-700">
+                        <img src="icons/info.png" class="w-5 h-5"> Settings
+                    </a>
+                </div>
+            </div>
+            <div class="relative" id="thesesMenu">
+                <button class="text-lg flex items-center gap-2 font-semibold py-2 px-4 rounded transform transition-transform duration-300 hover:scale-105">
+                    <img src="icons/thesis.png" class="w-6 h-6 rounded-md"> Theses
+                </button>
+                <div id="thesesDropdown" class="absolute hidden bg-yellow-800 text-white mt-1 rounded shadow-lg top-full left-0 z-10">
+                    <a href="theses.html" class="flex items-center gap-2 px-4 py-2 hover:bg-yellow-700">
+                        <img src="icons/thesis.png" class="w-5 h-5"> New Thesis
+                    </a>
+                    <a href="stats.html" class="flex items-center gap-2 px-4 py-2 hover:bg-yellow-700">
+                        <img src="icons/stats.png" class="w-5 h-5"> Stats
+                    </a>
+                </div>
+            </div>
+            <div class="relative" id="studentsMenu">
+                <button class="text-lg flex items-center gap-2 font-semibold py-2 px-4 rounded transform transition-transform duration-300 hover:scale-105">
+                    <img src="icons/students.png" class="w-6 h-6 rounded-md"> Students
+                </button>
+                <div id="studentsDropdown" class="absolute hidden bg-yellow-800 text-white mt-1 rounded shadow-lg top-full left-0 z-10">
+                    <a href="students_supervising.html" class="flex items-center gap-2 px-4 py-2 hover:bg-yellow-700">
+                        <img src="icons/students.png" class="w-5 h-5"> Supervising Students
+                    </a>
+                    <a href="invitations.html" class="flex items-center gap-2 px-4 py-2 hover:bg-yellow-700">
+                        <img src="icons/invitation.png" class="w-5 h-5"> Invitations
+                    </a>
+                </div>
+            </div>
+            <a href="./php/logout.php" class="text-lg flex items-center gap-2 font-semibold py-2 px-4 rounded hover:bg-yellow-700">
+                <img src="icons/logout.png" class="w-6 h-6 rounded-md">Logout
+            </a>
+        </div>
+    </nav>
+
+
+    <main class="flex-1 p-6 bg-gray-50 min-h-screen">
+        <header class="mb-12 text-center">
+            <h1 class="text-3xl font-bold text-yellow-700">Create new Theses</h1>
+        </header>
+        <section class="max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow-xl transition-all duration-300 transform hover:shadow-2xl">
+            <h2 class="text-2xl font-semibold text-yellow-700 mb-6">Create a New Thesis</h2>
+            <form id="thesisForm" onsubmit="event.preventDefault(); createThesis();" enctype="multipart/form-data" class="space-y-6">
+                
+                <div>
+                    <label for="title" class="block text-lg font-semibold text-gray-700 mb-2">Thesis Title</label>
+                    <input type="text" id="title" name="title" required 
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-yellow-500 transition-shadow" 
+                        placeholder="Enter thesis title">
+                </div>
+                
+                <div>
+                    <label for="abstract" class="block text-lg font-semibold text-gray-700 mb-2">Abstract</label>
+                    <textarea id="abstract" name="abstract" required 
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-yellow-500 transition-shadow" 
+                        rows="4" placeholder="Enter a brief description"></textarea>
+                </div>
+                
+                <div>
+                    <label for="pdf" class="block text-lg font-semibold text-gray-700 mb-2">Upload PDF</label>
+                    <div class="relative border border-dashed border-4 border-yellow-500 rounded-lg bg-gray-100 hover:bg-gray-200 bg-opacity-50">
+                        <input type="file" id="pdf" name="pdf" accept=".pdf" class="hidden" onchange="handleFileChange(event)">
+                        <label for="pdf" class="cursor-pointer bg-gray-500 hover:bg-yellow-500 text-white font-semibold py-2 px-3 rounded-lg shadow-lg transition-transform duration-300 hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-yellow-500 inline-block">
+                            <i class="fa-solid fa-file-pdf " style="color: #FFD43B;"></i> Browse Files
+                        </label>
+                        <span id="fileName" class="ml-4 text-gray-600"></span>
+                    </div>
+                </div>
+                
+                <button type="submit" 
+                    class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 rounded-lg shadow-lg transform transition-transform duration-300 hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-yellow-500">
+                    <i class="fa-solid fa-square-plus fa-beat fa-lg"></i> Create Thesis
+                </button>
+            </form>
+        </section>
+    </main>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./js/theses.js"></script>
+    <script src="./js/navbar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function handleFileChange(event) {
+            const fileInput = event.target;
+            const fileNameSpan = document.getElementById('fileName');
+            fileNameSpan.textContent = fileInput.files.length > 0 ? fileInput.files[0].name : 'No file chosen';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Tutor Dashboard - Syntaxis</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="./style.css" rel="stylesheet">
+</head>
+
+<body class="min-h-screen bg-gradient-to-r from-gray-300 via-gray-100 to-white text-gray-800">
+
+    <nav class="w-full bg-yellow-800 bg-opacity-90 text-white rounded-md flex items-center p-2">
+        <div class="flex items-center">
+            <img src="icons/logo.png" alt="Syntaxis Logo" class="w-12 h-12 rounded-full border-4 border-white shadow-lg">
+            <span class="ml-2 text-xl font-bold">Syntaxis</span>
+        </div>
+        <div class="flex flex-row ml-auto space-x-4">
+            <div class="relative" id="dashboardMenu">
+                <a href="tutor.html" class="text-lg flex items-center gap-2 font-semibold py-2 px-4 rounded transform transition-transform duration-300 hover:scale-105">
+                    <img src="icons/dashboard.png" class="w-6 h-6 rounded-md"> Dashboard
+                </a>
+                <!-- Dropdown Menu -->
+                <div id="dashboardDropdown" class="absolute hidden bg-yellow-800 text-white mt-1 rounded shadow-lg top-full left-0 z-10">
+                    <a href="settings_tutor.html" class="flex items-center gap-2 px-4 py-2 hover:bg-yellow-700">
+                        <img src="icons/info.png" class="w-5 h-5"> Settings
+                    </a>
+                </div>
+            </div>
+            <div class="relative" id="thesesMenu">
+                <button class="text-lg flex items-center gap-2 font-semibold py-2 px-4 rounded transform transition-transform duration-300 hover:scale-105">
+                    <img src="icons/thesis.png" class="w-6 h-6 rounded-md"> Theses
+                </button>
+                <div id="thesesDropdown" class="absolute hidden bg-yellow-800 text-white mt-1 rounded shadow-lg top-full left-0 z-10">
+                    <a href="theses.html" class="flex items-center gap-2 px-4 py-2 hover:bg-yellow-700">
+                        <img src="icons/thesis.png" class="w-5 h-5"> All Theses
+                    </a>
+                    <a href="stats.html" class="flex items-center gap-2 px-4 py-2 hover:bg-yellow-700">
+                        <img src="icons/stats.png" class="w-5 h-5"> Stats
+                    </a>
+                </div>
+            </div>
+            <div class="relative" id="studentsMenu">
+                <button class="text-lg flex items-center gap-2 font-semibold py-2 px-4 rounded transform transition-transform duration-300 hover:scale-105">
+                    <img src="icons/students.png" class="w-6 h-6 rounded-md"> Students
+                </button>
+                <div id="studentsDropdown" class="absolute hidden bg-yellow-800 text-white mt-1 rounded shadow-lg top-full left-0 z-10">
+                    <a href="students_supervising.html" class="flex items-center gap-2 px-4 py-2 hover:bg-yellow-700">
+                        <img src="icons/students.png" class="w-5 h-5"> Supervising Students
+                    </a>
+                    <a href="invitations.html" class="flex items-center gap-2 px-4 py-2 hover:bg-yellow-700">
+                        <img src="icons/invitation.png" class="w-5 h-5"> Invitations
+                    </a>
+                </div>
+            </div>
+            <a href="./php/logout.php" class="text-lg flex items-center gap-2 font-semibold py-2 px-4 rounded hover:bg-yellow-700">
+                <img src="icons/logout.png" class="w-6 h-6 rounded-md">Logout
+            </a>
+        </div>
+    </nav>
+
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6">
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold text-yellow-700">Statistics</h1>
+        </header>
+
+        <!-- Statistics Section with 3 columns per row -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 ">
+            <!-- Average Completion Time Charts -->
+            <div class="bg-white p-6 rounded-lg transform transition-transform duration-300 hover:scale-105">
+                <h2 class="text-xl font-bold text-gray-700 mb-4">Average Completion Time - Supervisor</h2>
+                <canvas id="supervisorChart"></canvas>
+            </div>
+            <div class="bg-white p-6 rounded-lg transform transition-transform duration-300 hover:scale-105">
+                <h2 class="text-xl font-bold text-gray-700 mb-4">Average Completion Time - Committee</h2>
+                <canvas id="committeeChart"></canvas>
+            </div>
+
+            <!-- Average Grade Charts -->
+            <div class="bg-white p-6 rounded-lg transform transition-transform duration-300 hover:scale-105">
+                <h2 class="text-xl font-bold text-gray-700 mb-4">Average Grade - Supervisor</h2>
+                <canvas id="avgGradeSupervisorChart"></canvas>
+            </div>
+            <div class="bg-white p-6 rounded-lg transform transition-transform duration-300 hover:scale-105">
+                <h2 class="text-xl font-bold text-gray-700 mb-4">Average Grade - Committee</h2>
+                <canvas id="avgGradeCommitteeChart"></canvas>
+            </div>
+
+            <!-- Total Number of Theses Charts -->
+            <div class="bg-white p-6 rounded-lg transform transition-transform duration-300 hover:scale-105">
+                <h2 class="text-xl font-bold text-gray-700 mb-4">Total Supervised Theses</h2>
+                <canvas id="totalSupervisedChart"></canvas>
+            </div>
+            <div class="bg-white p-6 rounded-lg transform transition-transform duration-300 hover:scale-105">
+                <h2 class="text-xl font-bold text-gray-700 mb-4">Total Committee Theses</h2>
+                <canvas id="totalCommitteeChart"></canvas>
+            </div>
+        </div>
+</main>
+
+
+    
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./js/stats.js"></script>
+    <script src="./js/navbar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>

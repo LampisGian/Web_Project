@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 flex items-center justify-center min-h-screen p-6">
+    <!-- 404 Container -->
+    <div class="max-w-lg mx-auto bg-white p-10 rounded-2xl shadow-xl transition-transform duration-300 hover:shadow-2xl">
+        <!-- Header -->
+        <header class="text-center mb-6">
+            <h1 class="text-5xl font-extrabold text-yellow-500">404</h1>
+            <h2 class="text-2xl font-semibold text-gray-700 mt-2">Page Not Found</h2>
+        </header>
+
+        <!-- Message -->
+        <p class="text-gray-600 font-semibold text-center mb-8">
+            Oops! It looks like the page you're looking for doesn't exist. 
+            Please check the URL or head back to the homepage.
+        </p>
+
+        <!-- Illustration (optional) -->
+        <div class="flex justify-center mb-8">
+            <img src="./icons/404.png" alt="404 illustration" class="rounded-md">
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex justify-center gap-4">
+            <a href="index.html" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg transform transition-transform duration-300 hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-yellow-500">
+                Go to Homepage
+            </a>
+            <a href="javascript:history.back()" class="bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-3 px-6 rounded-lg shadow-lg transform transition-transform duration-300 hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-gray-400">
+                Go Back
+            </a>
+        </div>
+    </div>
+</body>
+</html>

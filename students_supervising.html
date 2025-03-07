@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Supervising</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome CDN for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="./style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+
+<body class="min-h-screen bg-gray-100 text-gray-800">
+    <nav class="w-full bg-yellow-800 bg-opacity-90 text-white rounded-md flex items-center p-2">
+        <div class="flex items-center">
+            <img src="icons/logo.png" alt="Syntaxis Logo" class="w-12 h-12 rounded-full border-4 border-white shadow-lg">
+            <span class="ml-2 text-xl font-bold">Syntaxis</span>
+        </div>
+        <div class="flex flex-row ml-auto space-x-4">
+            <div class="relative" id="dashboardMenu">
+                <a href="tutor.html" class="text-lg flex items-center gap-2 font-semibold py-2 px-4 rounded transform transition-transform duration-300 hover:scale-105">
+                    <img src="icons/dashboard.png" class="w-6 h-6 rounded-md"> Dashboard
+                </a>
+                <!-- Dropdown Menu -->
+                <div id="dashboardDropdown" class="absolute hidden bg-yellow-800 text-white mt-1 rounded shadow-lg top-full left-0 z-10">
+                    <a href="settings_tutor.html" class="flex items-center gap-2 px-4 py-2 hover:bg-yellow-700">
+                        <img src="icons/info.png" class="w-5 h-5"> Settings
+                    </a>
+                </div>
+            </div>
+            <div class="relative" id="thesesMenu">
+                <button class="text-lg flex items-center gap-2 font-semibold py-2 px-4 rounded transform transition-transform duration-300 hover:scale-105">
+                    <img src="icons/thesis.png" class="w-6 h-6 rounded-md"> Theses
+                </button>
+                <div id="thesesDropdown" class="absolute hidden bg-yellow-800 text-white mt-1 rounded shadow-lg top-full left-0 z-10">
+                    <a href="theses.html" class="flex items-center gap-2 px-4 py-2 hover:bg-yellow-700">
+                        <img src="icons/thesis.png" class="w-5 h-5"> All Theses
+                    </a>
+                    <a href="stats.html" class="flex items-center gap-2 px-4 py-2 hover:bg-yellow-700">
+                        <img src="icons/stats.png" class="w-5 h-5"> Stats
+                    </a>
+                </div>
+            </div>
+            <div class="relative" id="studentsMenu">
+                <button class="text-lg flex items-center gap-2 font-semibold py-2 px-4 rounded transform transition-transform duration-300 hover:scale-105">
+                    <img src="icons/students.png" class="w-6 h-6 rounded-md"> Students
+                </button>
+                <div id="studentsDropdown" class="absolute hidden bg-yellow-800 text-white mt-1 rounded shadow-lg top-full left-0 z-10">
+                    <a href="students_supervising.html" class="flex items-center gap-2 px-4 py-2 hover:bg-yellow-700">
+                        <img src="icons/students.png" class="w-5 h-5"> Supervising Students
+                    </a>
+                    <a href="invitations.html" class="flex items-center gap-2 px-4 py-2 hover:bg-yellow-700">
+                        <img src="icons/invitation.png" class="w-5 h-5"> Invitations
+                    </a>
+                </div>
+            </div>
+            <a href="./php/logout.php" class="text-lg flex items-center gap-2 font-semibold py-2 px-4 rounded hover:bg-yellow-700">
+                <img src="icons/logout.png" class="w-6 h-6 rounded-md">Logout
+            </a>
+        </div>
+    </nav>
+
+
+    <main class="flex-1 p-6">
+        <!-- Header Section -->
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold text-yellow-700">Supervising</h1>
+            <p class="text-l font-bold text-gray-700">Detailed view of completed and ongoing theses</p>
+        </header>
+        
+        <!-- Filters -->
+        <div class="flex items-center space-x-4 mb-6">
+            <select id="statusFilter" class="p-2 border border-gray-300 rounded bg-gray-100 hover:bg-gray-200 transition-colors duration-200 font-semibold">
+                <option value="">All Statuses</option>
+                <option value="under assignment">Under Assignment</option>
+                <option value="in progress">In Progress</option>
+                <option value="under review">Under Review</option>
+                <option value="completed">Completed</option>
+            </select>
+            <select id="roleFilter" class="p-2 border border-gray-300 rounded bg-gray-100 hover:bg-gray-200 transition-colors duration-200 font-semibold">
+                <option value="">All Roles</option>
+                <option value="supervisor">Supervisor</option>
+                <option value="committee">Committee Member</option>
+            </select>
+
+            <button id="cTheses" class="p-2 border border-red-400 rounded-md py-1 px-3 rounded font-semibold mt-1 self-start">
+                Cancelled theses
+            </button>
+
+            <!-- Export Buttons -->
+            <div class="flex space-x-4 mb-6" id="exportButtons">
+                <button id="exportToCSV" class="transform transition-transform duration-200 hover:scale-150 py-2 px-4 rounded">
+                    <i class="fa-solid fa-file-csv fa-2xl" style="color: #FFD43B;"></i>
+                </button>
+                <button id="exportToJSON"  class="transform transition-transform duration-200 hover:scale-150 py-2 px-4 rounded">
+                    <i class="fa-solid fa-file-export fa-2xl" style="color: #FFD43B;"></i>
+                </button>
+            </div>
+        </div>
+    
+        <!-- Theses List -->
+        <div id="thesisList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        
+
+        <!-- Thesis Details Modal -->
+        <div id="thesisModal2" class="fixed inset-0 bg-gray-900 bg-opacity-60 backdrop-blur-lg flex items-center justify-center hidden transition-colors duration-200 font-semibold">
+            <div class="bg-white rounded-lg shadow-xl p-6 w-11/12 md:w-2/3 lg:w-1/2 max-h-[60vh] overflow-y-auto">
+                <!-- Close Button -->
+                <button id="closeModalBtn" class="float-right text-gray-500 hover:text-yellow-500 transform transition-transform duration-200 hover:scale-150">
+                    <i class="fa-regular fa-rectangle-xmark"></i>
+                </button>
+                <!-- Modal Content -->
+                <h2 id="modalTitle" class="text-3xl font-bold text-yellow-700 mb-4"></h2>
+                <div id="modalContent" class="space-y-4 text-gray-800">
+                    <!-- Content will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
+        <!-- Grading Modal -->
+        <div id="gradingModal" class="fixed inset-0 hidden bg-gray-800 bg-opacity-70 flex items-center justify-center z-50">
+            <div class="bg-white p-8 rounded-lg shadow-lg w-96 font-semibold">
+                <h2 class="text-2xl font-bold text-yellow-700 mb-6">Grade Thesis</h2>
+
+                <div>
+                    <label class="block text-gray-700 mb-1">1. Quality of Thesis and Goal Fulfillment (60%)</label>
+                    <input type="number" min="0" max="10" id="criteria1" class="w-full p-2 border border-gray-300 rounded mb-4" placeholder="Enter grade (0-10)">
+                </div>
+                <div>
+                    <label class="block text-gray-700 mb-1">2. Completion Time (15%)</label>
+                    <input type="number" min="0" max="10" id="criteria2" class="w-full p-2 border border-gray-300 rounded mb-4" placeholder="Enter grade (0-10)">
+                </div>
+                <div>
+                    <label class="block text-gray-700 mb-1">3. Quality and Completeness of the Text (15%)</label>
+                    <input type="number" min="0" max="10" id="criteria3" class="w-full p-2 border border-gray-300 rounded mb-4" placeholder="Enter grade (0-10)">
+                </div>
+                <div>
+                    <label class="block text-gray-700 mb-1">4. Overall Presentation (10%)</label>
+                    <input type="number" min="0" max="10" id="criteria4" class="w-full p-2 border border-gray-300 rounded mb-4" placeholder="Enter grade (0-10)">
+                </div>
+
+                <div class="flex justify-end space-x-4 mt-6">
+                    <button onclick="saveGrades()" class="bg-green-500 hover:bg-green-600 text-white py-2 px-6 rounded font-semibold">Save</button>
+                    <button onclick="closeGradingModal()" class="bg-gray-500 hover:bg-gray-600 text-white py-2 px-6 rounded font-semibold">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div id="cThesesModal" class="fixed inset-0 bg-gray-900 bg-opacity-60 backdrop-blur-lg flex items-center justify-center hidden transition-colors duration-200 font-semibold">
+            <div class="bg-white rounded-lg shadow-xl p-6 w-11/12 md:w-2/3 lg:w-1/2 max-h-[60vh] overflow-y-auto">
+                <!-- Close Button -->
+                <button id="closecTheses" class="float-right text-gray-500 hover:text-red-500 transform transition-transform duration-200 hover:scale-150">
+                    <i class="fa-regular fa-rectangle-xmark"></i>
+                </button>
+                <!-- Modal Content -->
+                <h2 id="modalTitle" class="text-3xl font-bold text-yellow-700 mb-6"></h2>
+                <div id="cThesesContent" class="space-y-4 text-gray-800">
+                    <!-- Content will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
+      
+
+        
+        
+    </main>
+    
+
+    <!-- JavaScript for any additional functionality -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    <script src="./js/supervising.js"></script>
+    <script src="./js/navbar.js"></script>
+</body>
+</html>

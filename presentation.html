@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thesis Details</title>
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="min-h-screen bg-gradient-to-r from-gray-300 via-gray-100 to-white text-gray-800">
+    <nav class="w-full bg-yellow-800 bg-opacity-90 text-white rounded-md flex items-center p-2">
+        <div class="flex items-center">
+            <img src="icons/logo.png" alt="Syntaxis Logo" class="w-12 h-12 rounded-full border-4 border-white shadow-lg">
+            <span class="ml-2 text-xl font-bold">Syntaxis</span>
+        </div>
+        <div class="flex flex-row ml-auto space-x-4">
+            <div class="relative" id="dashboardMenu">
+                <a href="student_dashboard.html" class="text-lg flex items-center gap-2 font-semibold py-2 px-4 rounded transform transition-transform duration-300 hover:scale-105">
+                    <img src="icons/dashboard.png" class="w-6 h-6 rounded-md"> Dashboard
+                </a>
+                <!-- Dropdown Menu -->
+                <div id="dashboardDropdown" class="absolute hidden bg-yellow-800 text-white mt-1 rounded shadow-lg top-full left-0 z-10">
+                    <a href="settings.html" class="flex items-center gap-2 px-4 py-2 hover:bg-yellow-700">
+                        <img src="icons/info.png" class="w-5 h-5"> Settings
+                    </a>
+                </div>
+            </div>
+            <a href="presentation.html" class="text-lg flex items-center gap-2 font-semibold py-2 px-4 rounded transform transition-transform duration-300 hover:scale-110">
+                <img src="icons/slideshow.png" class="w-6 h-6 rounded-md"> Presentation
+            </a>
+            <a href="./php/logout.php" class="text-lg flex items-center gap-2 font-semibold py-2 px-4 rounded hover:bg-yellow-700">
+                <img src="icons/logout.png" class="w-6 h-6 rounded-md">Logout
+            </a>
+        </div>
+    </nav>
+    <!-- Main Content Section -->
+    <main class="flex-1 p-6">
+        <h1 class="text-3xl font-bold text-yellow-700 mb-6">Presentation & Review Details</h1>
+    
+        <!-- Presentation Details Table -->
+        <section class="bg-white p-6 rounded-lg shadow-lg w-full max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-yellow-700 mb-6 text-center">Thesis Presentation Details</h2>
+    
+            <!-- Table to show thesis details -->
+            <table class="w-full text-left border-collapse text-yellow-600">
+                <thead>
+                    <tr>
+                        <th class="py-3 px-4 border-b-2">Thesis Title</th>
+                        <th class="py-3 px-4 border-b-2">Student Name</th>
+                        <th class="py-3 px-4 border-b-2">Committee</th>
+                        <th class="py-3 px-4 border-b-2">Presentation Link / Venue</th>
+                        <th class="py-3 px-4 border-b-2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="thesisTableBody">
+                    <!-- Rows will be populated dynamically -->
+                </tbody>
+            </table>
+            <div class= "hidden" id="presentationDiv"> 
+            <input type="text" id="presentationDateTime" 
+                class="flatpickr-input w-1/4 font-semibold p-2 border border-yellow-400 rounded-md mt-2" 
+                placeholder="Pick date and time" />
+                <button id="setPresentationDate" 
+                class="bg-blue-800 hover:bg-blue-900 text-white font-semibold py-2 px-4 mt-4 rounded shadow">
+                Set Date </button>
+                <span id="presentationDateDisplay" class="text-gray-500 text-sm font-semibold ml-4">
+                    <strong>Current Presentation Date:</strong> N/A
+                </span>
+            </div>
+        </section>
+        
+    
+        <!-- Review Section -->
+        <section class="bg-white p-6 rounded-lg shadow-lg w-full max-w-4xl mx-auto mt-8">
+            <h2 class="text-2xl font-bold text-yellow-700 mb-6 text-center hidden" id="reviewHeader">Thesis Review</h2>
+            
+            <table class="w-full text-left border-collapse text-yellow-600 hidden" id="reviewTable">
+                <thead>
+                    <tr>
+                        <th class="py-3 px-4 border-b-2">Supervisor Grade</th>
+                        <th class="py-3 px-4 border-b-2">Co-Supervisor 1 Grade</th>
+                        <th class="py-3 px-4 border-b-2">Co-Supervisor 2 Grade</th>
+                        <th class="py-3 px-4 border-b-2">Library Link</th>
+                    </tr>
+                </thead>
+                <tbody id="reviewTableBody">
+                    <!-- Review rows will be dynamically populated -->
+                </tbody>
+            </table>
+
+            <div class="timeline">
+                <h3 class="text-xl font-semibold text-yellow-700 mb-4 text-center">Status Timeline</h3>
+                <ul id="statusTimeline" class="horizontal-timeline text-gray-700 text-sm">
+                    <!-- Timeline entries will be dynamically populated -->
+                </ul>
+            </div>
+            
+        </section>
+    </main>
+    
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="./js/presentation.js"></script>
+    <script src="./js/navbar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Settings - Syntaxis</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<style>
+   /* Card styling with hover effect */
+    .settings-card {
+        background-color: white;
+        max-width: 65%;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .settings-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+
+    input[type="text"], input[type="email"] {
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        padding: 8px;
+        width: 100%;
+        margin-top: 10px;
+        color: #ca8a04; 
+        transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    input[type="text"]:focus, input[type="email"]:focus {
+        outline: none;
+        border-color: #d97706; /* yellow-600 */
+        box-shadow: 0 0 0 3px rgba(234, 179, 8, 0.5); /* yellow-600 ring */
+        color: #d97706; /* yellow-600 */
+    }
+
+</style>
+<body class="min-h-screen bg-gradient-to-r from-gray-300 via-gray-100 to-white text-gray-800">
+    <nav class="w-full bg-yellow-800 bg-opacity-90 text-white rounded-md flex items-center p-2">
+        <div class="flex items-center">
+            <img src="icons/logo.png" alt="Syntaxis Logo" class="w-12 h-12 rounded-full border-4 border-white shadow-lg">
+            <span class="ml-2 text-xl font-bold">Syntaxis</span>
+        </div>
+        <div class="flex flex-row ml-auto space-x-4">
+            <div class="relative" id="dashboardMenu">
+                <a href="tutor.html" class="text-lg flex items-center gap-2 font-semibold py-2 px-4 rounded transform transition-transform duration-300 hover:scale-105">
+                    <img src="icons/dashboard.png" class="w-6 h-6 rounded-md"> Dashboard
+                </a>
+                <!-- Dropdown Menu -->
+                <div id="dashboardDropdown" class="absolute hidden bg-yellow-800 text-white mt-1 rounded shadow-lg top-full left-0 z-10">
+                    <a href="settings_tutor.html" class="flex items-center gap-2 px-4 py-2 hover:bg-yellow-700">
+                        <img src="icons/info.png" class="w-5 h-5"> Settings
+                    </a>
+                </div>
+            </div>
+            <div class="relative" id="thesesMenu">
+                <button class="text-lg flex items-center gap-2 font-semibold py-2 px-4 rounded transform transition-transform duration-300 hover:scale-105">
+                    <img src="icons/thesis.png" class="w-6 h-6 rounded-md"> Theses
+                </button>
+                <div id="thesesDropdown" class="absolute hidden bg-yellow-800 text-white mt-1 rounded shadow-lg top-full left-0 z-10">
+                    <a href="theses.html" class="flex items-center gap-2 px-4 py-2 hover:bg-yellow-700">
+                        <img src="icons/thesis.png" class="w-5 h-5"> All Theses
+                    </a>
+                    <a href="stats.html" class="flex items-center gap-2 px-4 py-2 hover:bg-yellow-700">
+                        <img src="icons/stats.png" class="w-5 h-5"> Stats
+                    </a>
+                </div>
+            </div>
+            <div class="relative" id="studentsMenu">
+                <button class="text-lg flex items-center gap-2 font-semibold py-2 px-4 rounded transform transition-transform duration-300 hover:scale-105">
+                    <img src="icons/students.png" class="w-6 h-6 rounded-md"> Students
+                </button>
+                <div id="studentsDropdown" class="absolute hidden bg-yellow-800 text-white mt-1 rounded shadow-lg top-full left-0 z-10">
+                    <a href="students_supervising.html" class="flex items-center gap-2 px-4 py-2 hover:bg-yellow-700">
+                        <img src="icons/students.png" class="w-5 h-5"> Supervising Students
+                    </a>
+                    <a href="invitations.html" class="flex items-center gap-2 px-4 py-2 hover:bg-yellow-700">
+                        <img src="icons/invitation.png" class="w-5 h-5"> Invitations
+                    </a>
+                </div>
+            </div>
+            <a href="./php/logout.php" class="text-lg flex items-center gap-2 font-semibold py-2 px-4 rounded hover:bg-yellow-700">
+                <img src="icons/logout.png" class="w-6 h-6 rounded-md">Logout
+            </a>
+        </div>
+    </nav>
+
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6">
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold text-yellow-700">Settings</h1>
+        </header>
+    
+        <!-- Cards for Each Setting -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-10">
+    
+            <!-- Address Card -->
+            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-1 transition duration-300">
+                <h2 class="text-xl flex gap-1 font-bold text-gray-700">Full Postal Address <img src="icons/map.png" class="w-8 h-7 rounded-md transform transition-transform duration-300 hover:scale-110"></h2>
+                <input type="text" id="address" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-yellow-500" placeholder="Enter your address" />
+                <button onclick="updateSetting('address')" class="bg-yellow-700 hover:bg-yellow-800 text-white font-bold py-2 px-6 mt-4 rounded-lg shadow">
+                    Update
+                </button>
+            </div>
+    
+            <!-- Email Card -->
+            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-1 transition duration-300">
+                <h2 class="text-xl flex gap-1 font-bold text-gray-700">Email Address <img src="icons/mail.png" class="w-6 h-6 rounded-md transform transition-transform duration-300 hover:scale-110"></h2>
+                <input type="email" id="email" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-yellow-500" placeholder="Enter your email" />
+                <button onclick="updateSetting('email')" class="bg-yellow-700 hover:bg-yellow-800 text-white font-bold py-2 px-6 mt-4 rounded-lg shadow">
+                    Update
+                </button>
+            </div>
+    
+            <!-- Mobile Phone Card -->
+            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-1 transition duration-300">
+                <h2 class="text-xl flex gap-1 font-bold text-gray-700">Mobile Phone <img src="icons/phone.png" class="w-7 h-7 rounded-md transform transition-transform duration-300 hover:scale-110"></h2>
+                <input type="text" id="mobile" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-yellow-500" placeholder="Enter your mobile phone" />
+                <button onclick="updateSetting('mobile')" class="bg-yellow-700 hover:bg-yellow-800 text-white font-bold py-2 px-6 mt-4 rounded-lg shadow">
+                    Update
+                </button>
+            </div>
+    
+            <!-- Landline Phone Card -->
+            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-1 transition duration-300">
+                <h2 class="text-xl font-bold flex gap-1 text-gray-700">Landline Phone <img src="icons/telephone.png" class="w-6 h-6 rounded-md transform transition-transform duration-300 hover:scale-110"></h2>
+                <input type="text" id="phone" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-yellow-500" placeholder="Enter your landline phone" />
+                <button onclick="updateSetting('phone')" class="bg-yellow-700 hover:bg-yellow-800 text-white font-bold py-2 px-6 mt-4 rounded-lg shadow">
+                    Update
+                </button>
+            </div>
+
+            <div></div>
+
+            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-1 transition duration-300" id="departmentDiv">
+                <h2 class="text-xl font-bold flex gap-1 text-gray-700">Department 
+                    <img src="icons/deparment.png" class="w-6 h-6 rounded-md transform transition-transform duration-300 hover:scale-110">
+                </h2>
+                <select id="department" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-yellow-500"></select>
+                <button onclick="updateTutorInfo('department')" class="bg-yellow-700 hover:bg-yellow-800 text-white font-bold py-2 px-6 mt-4 rounded-lg shadow">
+                    Update Department
+                </button>
+            </div>
+            
+
+            <!-- Landline Phone Card -->
+            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-1 transition duration-300">
+                <h2 class="text-xl font-bold flex gap-1 text-gray-700">Specialization <img src="icons/spec.png" class="w-6 h-6 rounded-md transform transition-transform duration-300 hover:scale-110"></h2>
+                <input type="text" id="specialization" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-yellow-500" placeholder="Enter your specialization" />
+                <button onclick="updateTutorInfo('specialization')" class="bg-yellow-700 hover:bg-yellow-800 text-white font-bold py-2 px-6 mt-4 rounded-lg shadow">
+                    Update
+                </button>
+            </div>
+        </div>
+    </main>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./js/settings.js"></script>
+    <script src="./js/navbar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+</html>
